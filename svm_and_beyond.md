@@ -113,9 +113,9 @@ This is one of the most important ideas throughout ML into deep learning.
 - **Bias** measures how much a model’s predictions systematically deviate from the true relationship. High bias models are too simple and underfit the data.
 - **Variance** measures how sensitive a model is to changes in the training data. High variance models fit the training data very closely but may not generalize well.
 
-**Overfitting** occurs when training error is very low but test error is high, meaning the model has memorized the training data and does not generalize well.
+> **Overfitting** occurs when training error is very low but test error is high, meaning the model has memorized the training data and does not generalize well.
 
-**Underfitting** occurs when both training and test error are high, meaning the model is too simple to capture the underlying structure of the data.
+> **Underfitting** occurs when both training and test error are high, meaning the model is too simple to capture the underlying structure of the data.
 
 Complex models are high variance: they fit datasets very well but generalize poorly. Simple models (like using linear regression on a task that is more advanced and requires decision trees) have high bias: think bias to the assumptions in data.
 
