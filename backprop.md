@@ -61,3 +61,117 @@ $$\frac{df}{du} = (\frac{dv}{du} \frac{dz}{du} + \frac{dw}{du} \frac{dz}{dw})$$
 Here's an example of what backprop looks like through a simple network (courtesy of CS 4782)
 
 ![](backprop_ex.png)
+
+We first call the forward pass through the network: if $u=5$, then $v=125$, $w = 10$, and $z = 1250$.
+
+Now we can call the backwards function through our network: with the chain rule we find all the gradients above through every node. Starting with $z$, if we know the gradients at each step and move these backwards through the network, we can ultimately find $\frac{dz}{du}$.
+
+## Algorithms
+
+### Forward Pass Through an MLP
+
+**Input:**  
+- input vector $x$  
+- weight matrices $W^{[1]}, \dots, W^{[L]}$ 
+- bias vectors $b^{[1]}, \dots, b^{[L]}$
+
+**Algorithm**
+
+1. Initialize input  
+   $$
+   z^{[0]} = x
+   $$
+
+2. For $l = 1$ to $L$:
+
+   **Linear transformation**
+   $$
+   a^{[l]} = W^{[l]} z^{[l-1]} + b^{[l]}
+   $$
+
+   **Nonlinear activation**
+   $$
+   z^{[l]} = \sigma^{[l]}(a^{[l]})
+   $$
+
+3. End for
+
+**Output**
+
+$$
+z^{[L]}
+$$
+
+---
+
+### Backward Pass Through an MLP (Backpropagation)
+
+**Input:**  
+- activations $z^{[1]}, \dots, z^{[L]}$
+- pre-activations $a^{[1]}, \dots, a^{[L]}$
+- loss gradient $\frac{\partial \mathcal{L}}{\partial z^{[L]}}$
+
+### 1. Compute output layer error
+
+$$
+\delta^{[L]} =
+\frac{\partial \mathcal{L}}{\partial a^{[L]}}
+=
+\frac{\partial \mathcal{L}}{\partial z^{[L]}}
+\odot
+\sigma^{[L]'}(a^{[L]})
+$$
+
+---
+
+### 2. Backpropagate through layers
+
+For $l = L$ down to $1$:
+
+**Gradient of weights**
+
+$$
+\frac{\partial \mathcal{L}}{\partial W^{[l]}}
+=
+\delta^{[l]} (z^{[l-1]})^T
+$$
+
+**Gradient of biases**
+
+$$
+\frac{\partial \mathcal{L}}{\partial b^{[l]}}
+=
+\delta^{[l]}
+$$
+
+**Gradient w.r.t. previous activation**
+
+$$
+\frac{\partial \mathcal{L}}{\partial z^{[l-1]}}
+=
+(W^{[l]})^T \delta^{[l]}
+$$
+
+**Compute previous layer error**
+
+$$
+\delta^{[l-1]}
+=
+((W^{[l]})^T \delta^{[l]})
+\odot
+\sigma^{[l-1]'}(a^{[l-1]})
+$$
+
+**Output**
+
+Gradients for all parameters:
+
+$$
+\frac{\partial \mathcal{L}}{\partial W^{[1:L]}}
+\quad
+\frac{\partial \mathcal{L}}{\partial b^{[1:L]}}
+$$
+
+## What's the point?
+
+Now that we have gradients for each parameter, we can use gradient descent to step these weights in the direction which will minimize loss. At each layer, for each weight, we can adjust these parameters to make our predictions more accurate for our MLP, thus allowing it to "learn."
