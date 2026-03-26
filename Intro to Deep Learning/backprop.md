@@ -4,7 +4,7 @@ To understand backpropagation, we must first understand the simple structure of 
 
 First consider a single perceptron:
 
-![](perceptron.png)
+![](img/perceptron.png)
 
 our inputs $x_i$'s are multiplied by respective weights $w_i$'s and the actual neuron aggregates these incoming signals to produce an output. The simplest form is a sum aggregation. If the sum of all these incoming signals $x_i^T w > \tau$, some threshold, then the activation $a_i$ fires. We can also add in a bias $b$ to the neuron.
 
@@ -26,7 +26,7 @@ Just to name a few...
 
 > MLPs are incredibly expressive as shown form the Universal Approximation Theorem. In short, a single hidden-layer MLP with arbitrary width can be a universal function approximator. Here is one such example:
 
-![](mlp.png)
+![](img/mlp.png)
 
 > Depth vs width. A wide MLP can express any comlpex boundary. Depth allows an MLP to represent complex functions much more efficiently, often requiring exponentially fewer neurons than a shallow network.
 
@@ -56,11 +56,11 @@ For the multivariate chain rule, if $f(u)$ is $z = f(v(u), w(u))$, then
 
 $$\frac{df}{du} = (\frac{dv}{du} \frac{dz}{du} + \frac{dw}{du} \frac{dz}{dw})$$
 
-![](multivariate_chain.png)
+![](img/multivariate_chain.png)
 
 Here's an example of what backprop looks like through a simple network (courtesy of CS 4782)
 
-![](backprop_ex.png)
+![](img/backprop_ex.png)
 
 We first call the forward pass through the network: if $u=5$, then $v=125$, $w = 10$, and $z = 1250$.
 

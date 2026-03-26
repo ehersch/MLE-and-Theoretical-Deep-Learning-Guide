@@ -2,7 +2,7 @@
 
 ## Perceptron: Some Brief History
 
-![](perceptronVisLine.png)
+![](img/perceptronVisLine.png)
 
 Frank Rosenblatt's perveptron was a crucial building block to the first trainable artificial neural network. This is one of the first algorithms which learns from data.
 
@@ -98,7 +98,7 @@ Naive Bayes is generative because it models $P(x_i \mid y)$ and makes direct ass
 
 $$P(y\mid x_i) = \frac{1}{1 + e^{-y(w^Tx_i + b)}} = \sigma(y(w^Tx_i + b))$$
 
-We ultimately get a sigmoid curve ![](logistic.jpg)
+We ultimately get a sigmoid curve ![](img/logistic.jpg)
 where above some threshold (say 0.5) we classify a point as $+$.
 
 To actually find this optimal sigmoid, we need to learn the parameters for $w$: this utilizes gradient descent over some loss (will cover in next section about optimization). We need to find the gradient to optimize over. One approach is MLE:
@@ -123,7 +123,7 @@ This is our minimization objective. For each batch in our training data, we comp
 
 Logistic regression used MLE: for linear regression I will show the MLE and MAP approaches and explain the closed-form solution for OLS regression.
 
-![](observed_value.webp)
+![](img/observed_value.webp)
 
 Data assumption: $y_i\in \mathbb{R}$. Model assumption: $y_i = w^Tx_i + \epsilon_i$ where $\epsilon_i \sim N(0, \sigma^2)$. Our data is a line plus some normal mean 0 noise.
 
@@ -173,7 +173,7 @@ $$w^TX^TX = X^Ty \implies w^T = (X^TX)^{-1} X^Ty$$
 
 Linear regression can be very powerful, but what happens when there are correlations in many dimensions, or what if only a few features are really important? This is a common issue where high dimensional data lives in a lower-dimensional subspace. For instance, most of the variance happens in a dingle dimension.
 
-![](pca.png)
+![](img/pca.png)
 
 Principle component analysis allows us to project data from a high dimensional space onto its high-variance dimensions. This uses a spectral decomposition.
 
