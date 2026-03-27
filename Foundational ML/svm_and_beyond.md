@@ -4,7 +4,7 @@
 
 ## SVMs (with Kernels)
 
-![](kernel.png)
+![](img/kernel.png)
 The kernel trick is one of the coolest things I learned about in my first ML course.
 
 SVMs allow for generating a bex-approximation hyperplane for $\sim$ linearly-separable data. It's an optimization problem
@@ -32,7 +32,7 @@ $$
 \text{s.t. } 0 \le \alpha_i \le C, \quad \sum_{i=1}^n \alpha_i y_i = 0
 $$
 
-![](svm.png)
+![](img/svm.png)
 
 The classifier becomes
 
@@ -80,7 +80,7 @@ This allows SVMs to operate as if the data were mapped into a very high-dimensio
 
 Decision trees are one of the most powerful classical ML options (especially for Kaggle). They can work with classification or regression (adding a regression head on top of leaf nodes).
 
-![](dt.jpg)
+![](img/dt.jpg)
 
 This is like 20 questions! Except there are some more advanced tactics to decide how to split our data. Entropy is the most common approach. One common approach is **entropy**.
 
@@ -106,7 +106,7 @@ The decision tree chooses the split that **maximizes information gain**, meaning
 
 ## Bias-Variance Tradeoff
 
-![](bv.png)
+![](img/bv.png)
 
 This is one of the most important ideas throughout ML into deep learning.
 
@@ -119,15 +119,15 @@ This is one of the most important ideas throughout ML into deep learning.
 
 Complex models are high variance: they fit datasets very well but generalize poorly. Simple models (like using linear regression on a task that is more advanced and requires decision trees) have high bias: think bias to the assumptions in data.
 
-![](ddd.png)
+![](img/ddd.png)
 
-The beginning looks like standard ML with an overfitting region. However, eventually models get so big and good that they no longer overfit and larger is better.
+The beginning looks like standard ML with an overfitting region. However, we begin to see eventually that loss/error starts decreasing as parameter width increases. This is **double descent**. As the parameter width grows sufficiently large (which is very common in the LLM era) and complex enough to fit the training data perfectly, models begin generalize better and understand more complex phenomena.
 
 ## Boosting and Bagging
 
 Tree ensembles help manage the **bias–variance tradeoff**. Decision trees tend to have **low bias but high variance**, meaning they fit data well but are unstable. Ensemble methods combine many trees to improve performance.
 
-Generally, more complex models begin overfitting (high variance), however for deep learning a scenario known as **deep double descent** occurs.
+Generally, more complex models begin overfitting (high variance), but at a large enough size, **double descent** occurs.
 
 ### Bagging
 
