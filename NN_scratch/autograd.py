@@ -94,6 +94,16 @@ class Value:
         result._backprop = backprop
         return result
     
+    def log(self):
+        result = Value(math.log(self.data), (self,), _op = f'log')
+        
+        def backprop():
+            # log x --> d/dx = 1/x
+            self.grad += (1 / self.data) * result.grad
+            
+        result._backprop = backprop
+        return result
+    
     def tanh(self):
         # tanh = (e^x - e^(-x)) / (e^x + e^(-x))... OR
         result = Value(math.tanh(self.data), (self,), _op = f'tanh')
