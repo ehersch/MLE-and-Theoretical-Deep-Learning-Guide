@@ -111,7 +111,7 @@ class Value:
         def backprop():
             self.grad += (1 - result.data**2) * result.grad
         
-        result._backprop = backrop
+        result._backprop = backprop
         return result
     
     def relu(self):
@@ -125,36 +125,37 @@ class Value:
         result._backprop = backprop   
         return result        
         
-def topo_sort(root):
-    """
-        Topological sort of nodes in computation graph, ending with root.
-    """
-    visited = set([])
-    ordering = []
-    
-    def dfs(node):
-        if node not in visited:
-            visited.add(node)
-            
-            for child in node._prev:
-                dfs(child)
-                
-            ordering.append(node)
-    dfs(root)
-    return ordering
+    def topo_sort(self):
+        """
+            Topological sort of nodes in computation graph, ending with root.
+        """
+        visited = set([])
+        ordering = []
 
-def backward(root):
-    """
-        Given root, iterate through topo-graph (backwards) calling backprop.
-        Alters the gradients at each node in computation graph.
-    """
-    ordering = topo_sort(root)
-    
-    for cur in ordering:
-        cur.grad = 0
+        def dfs(node):
+            if node not in visited:
+                visited.add(node)
+
+                for child in node._prev:
+                    dfs(child)
+
+                ordering.append(node)
+        dfs(self)
+        return ordering
+
+    def backward(self):
+        """
+            Given root, iterate through topo-graph (backwards) calling backprop.
+            Alters the gradients at each node in computation graph.
+        """
         
-    root.grad = 1
-    
-    for cur in reversed(ordering):
-        if cur._prev is not None:
-            cur._backprop()
+        ordering = self.topo_sort()
+
+        for cur in ordering:
+            cur.grad = 0
+
+        self.grad = 1
+
+        for cur in reversed(ordering):
+            if cur._prev is not None:
+                cur._backprop()
