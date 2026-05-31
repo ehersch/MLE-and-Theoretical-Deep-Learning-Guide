@@ -53,10 +53,8 @@ class Layer:
 
     def parameters(self):
         output = []
-        
-        for i in range(self.dim_out):
-            output += [self.neurons[i].parameters()]
-            
+        for neuron in self.neurons:
+            output += neuron.parameters()
         return output
             
         
@@ -83,6 +81,5 @@ class MLP:
     def parameters(self):
         output = []
         for layer in self.layers:
-            output += [layer.parameters()]
-            
+            output += layer.parameters()
         return output
