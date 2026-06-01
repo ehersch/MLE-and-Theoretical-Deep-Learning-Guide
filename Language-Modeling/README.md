@@ -22,6 +22,7 @@ A comprehensive guide to modern large language models, from architecture fundame
 | [evaluation.md](evaluation.md) | Perplexity, benchmarks, LLM-as-judge |
 | [agents_and_rag.md](agents_and_rag.md) | Tool use, RAG, agentic frameworks |
 | [reasoning_models.md](reasoning_models.md) | Chain-of-thought, RLVR, o1/DeepSeek-R1 style training |
+| [distillation.md](distillation.md) | Knowledge distillation, on-policy distillation, GKD, continual learning |
 
 ## Reading order
 
@@ -29,4 +30,4 @@ A comprehensive guide to modern large language models, from architecture fundame
 
 **Systems track:** systems_and_hardware → parallelism → flash_attention → inference → quantization
 
-**Alignment track:** posttraining → peft → reasoning_models → evaluation
+**Alignment track:** posttraining → peft → reasoning_models → distillation → evaluation
