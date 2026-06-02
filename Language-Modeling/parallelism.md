@@ -161,6 +161,19 @@ optimizer.step()
 
 **Effective batch size** = per-GPU batch size × gradient accumulation steps × num GPUs.
 
+> **Aside — what effective batch size actually does:**
+> Gradient accumulation lets you simulate a large batch without holding it all in VRAM at once. If you take `n` gradient steps over minibatches of size `b` before calling `optimizer.step()`, the effective batch size is `n × b`. This reduces memory pressure while retaining the gradient stability benefits of larger batches. The key implementation detail: **divide the loss by `n` at each step** so the accumulated gradient magnitude matches what a single forward pass on the full `n×b` batch would produce — otherwise you're implicitly using an `n×` larger learning rate.
+>
+> ```python
+> optimizer.zero_grad()
+> for i, batch in enumerate(dataloader):
+>     loss = criterion(model(batch)) / n   # ← divide by n to keep gradient scale correct
+>     loss.backward()                       # gradients accumulate in .grad buffers
+>     if (i + 1) % n == 0:
+>         optimizer.step()                  # one update after n minibatches
+>         optimizer.zero_grad()
+> ```
+
 ---
 
 ## 3D/4D parallelism in practice
