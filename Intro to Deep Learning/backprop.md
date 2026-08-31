@@ -92,9 +92,7 @@ Now we can call the backwards function through our network: with the chain rule 
 
 **Output**
 
-$$
-z^{[L]}
-$$
+$$z^{[L]}$$
 
 ---
 
@@ -117,47 +115,25 @@ For $l = L$ down to $1$:
 
 **Gradient of weights**
 
-$$
-\frac{\partial \mathcal{L}}{\partial W^{[l]}}
-=
-\delta^{[l]} (z^{[l-1]})^T
-$$
+$$\frac{\partial \mathcal{L}}{\partial W^{[l]}} = \delta^{[l]} (z^{[l-1]})^T$$
 
 **Gradient of biases**
 
-$$
-\frac{\partial \mathcal{L}}{\partial b^{[l]}}
-=
-\delta^{[l]}
-$$
+$$\frac{\partial \mathcal{L}}{\partial b^{[l]}} = \delta^{[l]}$$
 
 **Gradient w.r.t. previous activation**
 
-$$
-\frac{\partial \mathcal{L}}{\partial z^{[l-1]}}
-=
-(W^{[l]})^T \delta^{[l]}
-$$
+$$\frac{\partial \mathcal{L}}{\partial z^{[l-1]}} = (W^{[l]})^T \delta^{[l]}$$
 
 **Compute previous layer error**
 
-$$
-\delta^{[l-1]}
-=
-((W^{[l]})^T \delta^{[l]})
-\odot
-\sigma^{[l-1]'}(a^{[l-1]})
-$$
+$$\delta^{[l-1]} = ((W^{[l]})^T \delta^{[l]}) \odot \sigma^{[l-1]'}(a^{[l-1]})$$
 
 **Output**
 
 Gradients for all parameters:
 
-$$
-\frac{\partial \mathcal{L}}{\partial W^{[1:L]}}
-\quad
-\frac{\partial \mathcal{L}}{\partial b^{[1:L]}}
-$$
+$$\frac{\partial \mathcal{L}}{\partial W^{[1:L]}} \quad \frac{\partial \mathcal{L}}{\partial b^{[1:L]}}$$
 
 ## What's the point?
 
