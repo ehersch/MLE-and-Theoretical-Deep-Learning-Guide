@@ -78,21 +78,15 @@ Now we can call the backwards function through our network: with the chain rule 
 **Algorithm**
 
 1. Initialize input  
-   $$
-   z^{[0]} = x
-   $$
+   $$z^{[0]} = x$$
 
 2. For $l = 1$ to $L$:
 
    **Linear transformation**
-   $$
-   a^{[l]} = W^{[l]} z^{[l-1]} + b^{[l]}
-   $$
+   $$a^{[l]} = W^{[l]} z^{[l-1]} + b^{[l]}$$
 
    **Nonlinear activation**
-   $$
-   z^{[l]} = \sigma^{[l]}(a^{[l]})
-   $$
+   $$z^{[l]} = \sigma^{[l]}(a^{[l]})$$
 
 3. End for
 
@@ -113,14 +107,12 @@ $$
 
 ### 1. Compute output layer error
 
-$$
-\delta^{[L]} =
+$$\delta^{[L]} =
 \frac{\partial \mathcal{L}}{\partial a^{[L]}}
 =
 \frac{\partial \mathcal{L}}{\partial z^{[L]}}
 \odot
-\sigma^{[L]'}(a^{[L]})
-$$
+\sigma^{[L]'}(a^{[L]})$$
 
 ---
 
