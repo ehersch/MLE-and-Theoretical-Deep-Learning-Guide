@@ -107,12 +107,7 @@ $$
 
 ### 1. Compute output layer error
 
-$$\delta^{[L]} =
-\frac{\partial \mathcal{L}}{\partial a^{[L]}}
-=
-\frac{\partial \mathcal{L}}{\partial z^{[L]}}
-\odot
-\sigma^{[L]'}(a^{[L]})$$
+$$\delta^{[L]} = \frac{\partial \mathcal{L}}{\partial a^{[L]}} = \frac{\partial \mathcal{L}}{\partial z^{[L]}} \odot \sigma^{[L]'}(a^{[L]})$$
 
 ---
 
