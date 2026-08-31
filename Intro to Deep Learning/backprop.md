@@ -54,7 +54,7 @@ $$\frac{dz}{dx} = \frac{dz}{dy} \frac{dy}{dx}$$
 
 For the multivariate chain rule, if $f(u)$ is $z = f(v(u), w(u))$, then
 
-$$\frac{df}{du} = (\frac{dv}{du} \frac{dz}{du} + \frac{dw}{du} \frac{dz}{dw})$$
+$$\frac{df}{du} = (\frac{dv}{du} \frac{dz}{dv} + \frac{dw}{du} \frac{dz}{dw})$$
 
 ![](img/multivariate_chain.png)
 
